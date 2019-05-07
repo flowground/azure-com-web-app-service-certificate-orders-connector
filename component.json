@@ -1,0 +1,389 @@
+{
+    "title": "AppServiceCertificateOrders API Client",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/web-AppServiceCertificateOrders/2018-02-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "AppServiceCertificateOrders_List": {
+            "main": "./lib/actions/AppServiceCertificateOrders_List.js",
+            "title": "List all certificate orders in a subscription.",
+            "description": "List all certificate orders in a subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_ValidatePurchaseInformation": {
+            "main": "./lib/actions/AppServiceCertificateOrders_ValidatePurchaseInformation.js",
+            "title": "Validate information for a certificate order.",
+            "description": "Validate information for a certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_ValidatePurchaseInformation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_ListByResourceGroup": {
+            "main": "./lib/actions/AppServiceCertificateOrders_ListByResourceGroup.js",
+            "title": "Get certificate orders in a resource group.",
+            "description": "Get certificate orders in a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_Delete": {
+            "main": "./lib/actions/AppServiceCertificateOrders_Delete.js",
+            "title": "Delete an existing certificate order.",
+            "description": "Delete an existing certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_Get": {
+            "main": "./lib/actions/AppServiceCertificateOrders_Get.js",
+            "title": "Get a certificate order.",
+            "description": "Get a certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_Update": {
+            "main": "./lib/actions/AppServiceCertificateOrders_Update.js",
+            "title": "Create or update a certificate purchase order.",
+            "description": "Create or update a certificate purchase order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_CreateOrUpdate": {
+            "main": "./lib/actions/AppServiceCertificateOrders_CreateOrUpdate.js",
+            "title": "Create or update a certificate purchase order.",
+            "description": "Create or update a certificate purchase order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_ListCertificates": {
+            "main": "./lib/actions/AppServiceCertificateOrders_ListCertificates.js",
+            "title": "List all certificates associated with a certificate order.",
+            "description": "List all certificates associated with a certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_ListCertificates.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_DeleteCertificate": {
+            "main": "./lib/actions/AppServiceCertificateOrders_DeleteCertificate.js",
+            "title": "Delete the certificate associated with a certificate order.",
+            "description": "Delete the certificate associated with a certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_DeleteCertificate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_GetCertificate": {
+            "main": "./lib/actions/AppServiceCertificateOrders_GetCertificate.js",
+            "title": "Get the certificate associated with a certificate order.",
+            "description": "Get the certificate associated with a certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_GetCertificate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_UpdateCertificate": {
+            "main": "./lib/actions/AppServiceCertificateOrders_UpdateCertificate.js",
+            "title": "Creates or updates a certificate and associates with key vault secret.",
+            "description": "Creates or updates a certificate and associates with key vault secret.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_UpdateCertificate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_CreateOrUpdateCertificate": {
+            "main": "./lib/actions/AppServiceCertificateOrders_CreateOrUpdateCertificate.js",
+            "title": "Creates or updates a certificate and associates with key vault secret.",
+            "description": "Creates or updates a certificate and associates with key vault secret.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_CreateOrUpdateCertificate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_Reissue": {
+            "main": "./lib/actions/AppServiceCertificateOrders_Reissue.js",
+            "title": "Reissue an existing certificate order.",
+            "description": "Reissue an existing certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_Reissue.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_Renew": {
+            "main": "./lib/actions/AppServiceCertificateOrders_Renew.js",
+            "title": "Renew an existing certificate order.",
+            "description": "Renew an existing certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_Renew.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_ResendEmail": {
+            "main": "./lib/actions/AppServiceCertificateOrders_ResendEmail.js",
+            "title": "Resend certificate email.",
+            "description": "Resend certificate email.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_ResendEmail.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_ResendRequestEmails": {
+            "main": "./lib/actions/AppServiceCertificateOrders_ResendRequestEmails.js",
+            "title": "Verify domain ownership for this certificate order.",
+            "description": "Verify domain ownership for this certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_ResendRequestEmails.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_RetrieveSiteSeal": {
+            "main": "./lib/actions/AppServiceCertificateOrders_RetrieveSiteSeal.js",
+            "title": "Verify domain ownership for this certificate order.",
+            "description": "Verify domain ownership for this certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_RetrieveSiteSeal.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_VerifyDomainOwnership": {
+            "main": "./lib/actions/AppServiceCertificateOrders_VerifyDomainOwnership.js",
+            "title": "Verify domain ownership for this certificate order.",
+            "description": "Verify domain ownership for this certificate order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_VerifyDomainOwnership.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_RetrieveCertificateActions": {
+            "main": "./lib/actions/AppServiceCertificateOrders_RetrieveCertificateActions.js",
+            "title": "Retrieve the list of certificate actions.",
+            "description": "Retrieve the list of certificate actions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_RetrieveCertificateActions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AppServiceCertificateOrders_RetrieveCertificateEmailHistory": {
+            "main": "./lib/actions/AppServiceCertificateOrders_RetrieveCertificateEmailHistory.js",
+            "title": "Retrieve email history.",
+            "description": "Retrieve email history.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AppServiceCertificateOrders_RetrieveCertificateEmailHistory.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

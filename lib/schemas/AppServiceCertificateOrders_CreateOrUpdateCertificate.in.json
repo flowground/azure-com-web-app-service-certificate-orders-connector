@@ -1,0 +1,113 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+[^\\.]$"
+        },
+        "certificateOrderName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Azure resource. This resource is tracked in Azure Resource Manager",
+                    "properties": {
+                        "id": {
+                            "description": "Resource Id.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "kind": {
+                            "description": "Kind of resource.",
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "Resource Location.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource Name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "location"
+                    ],
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Key Vault container ARM resource for a certificate that is purchased through Azure.",
+            "properties": {
+                "properties": {
+                    "description": "Core resource properties",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "keyVaultId": {
+                            "description": "Key Vault resource Id.",
+                            "type": "string"
+                        },
+                        "keyVaultSecretName": {
+                            "description": "Key Vault secret name.",
+                            "type": "string"
+                        },
+                        "provisioningState": {
+                            "description": "Status of the Key Vault secret.",
+                            "enum": [
+                                "Initialized",
+                                "WaitingOnCertificateOrder",
+                                "Succeeded",
+                                "CertificateOrderFailed",
+                                "OperationNotPermittedOnKeyVault",
+                                "AzureServiceUnauthorizedToAccessKeyVault",
+                                "KeyVaultDoesNotExist",
+                                "KeyVaultSecretDoesNotExist",
+                                "UnknownError",
+                                "ExternalPrivateKey",
+                                "Unknown"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "KeyVaultSecretStatus"
+                            }
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

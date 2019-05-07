@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+[^\\.]$"
+        },
+        "certificateOrderName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Site seal request.",
+            "properties": {
+                "lightTheme": {
+                    "description": "If <code>true</code> use the light color theme for site seal; otherwise, use the default color theme.",
+                    "type": "boolean"
+                },
+                "locale": {
+                    "description": "Locale of site seal.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

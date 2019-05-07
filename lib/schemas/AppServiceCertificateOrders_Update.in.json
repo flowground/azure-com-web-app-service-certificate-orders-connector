@@ -1,0 +1,414 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+[^\\.]$"
+        },
+        "certificateOrderName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Azure proxy only resource. This resource is not tracked by Azure Resource Manager.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource Id.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "kind": {
+                            "description": "Kind of resource.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource Name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "ARM resource for a certificate order that is purchased through Azure.",
+            "properties": {
+                "properties": {
+                    "description": "AppServiceCertificateOrderPatchResource resource specific properties",
+                    "properties": {
+                        "appServiceCertificateNotRenewableReasons": {
+                            "description": "Reasons why App Service Certificate is not renewable at the current moment.",
+                            "items": {
+                                "enum": [
+                                    "RegistrationStatusNotSupportedForRenewal",
+                                    "ExpirationNotInRenewalTimeRange",
+                                    "SubscriptionNotActive"
+                                ],
+                                "type": "string"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "autoRenew": {
+                            "default": true,
+                            "description": "<code>true</code> if the certificate should be automatically renewed when it expires; otherwise, <code>false</code>.",
+                            "type": "boolean"
+                        },
+                        "certificates": {
+                            "additionalProperties": {
+                                "description": "Key Vault container for a certificate that is purchased through Azure.",
+                                "properties": {
+                                    "keyVaultId": {
+                                        "description": "Key Vault resource Id.",
+                                        "type": "string"
+                                    },
+                                    "keyVaultSecretName": {
+                                        "description": "Key Vault secret name.",
+                                        "type": "string"
+                                    },
+                                    "provisioningState": {
+                                        "description": "Status of the Key Vault secret.",
+                                        "enum": [
+                                            "Initialized",
+                                            "WaitingOnCertificateOrder",
+                                            "Succeeded",
+                                            "CertificateOrderFailed",
+                                            "OperationNotPermittedOnKeyVault",
+                                            "AzureServiceUnauthorizedToAccessKeyVault",
+                                            "KeyVaultDoesNotExist",
+                                            "KeyVaultSecretDoesNotExist",
+                                            "UnknownError",
+                                            "ExternalPrivateKey",
+                                            "Unknown"
+                                        ],
+                                        "readOnly": true,
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": false,
+                                            "name": "KeyVaultSecretStatus"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "description": "State of the Key Vault secret.",
+                            "type": "object"
+                        },
+                        "csr": {
+                            "description": "Last CSR that was created for this order.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "create",
+                                "read"
+                            ]
+                        },
+                        "distinguishedName": {
+                            "description": "Certificate distinguished name.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "create",
+                                "read"
+                            ]
+                        },
+                        "domainVerificationToken": {
+                            "description": "Domain verification token.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "expirationTime": {
+                            "description": "Certificate expiration time.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "intermediate": {
+                            "description": "Intermediate certificate.",
+                            "readOnly": true,
+                            "properties": {
+                                "issuer": {
+                                    "description": "Certificate Issuer.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "notAfter": {
+                                    "description": "Date Certificate is valid to.",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "notBefore": {
+                                    "description": "Date Certificate is valid from.",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "rawData": {
+                                    "description": "Raw certificate data.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "serialNumber": {
+                                    "description": "Certificate Serial Number.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "signatureAlgorithm": {
+                                    "description": "Certificate Signature algorithm.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "subject": {
+                                    "description": "Certificate Subject.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "thumbprint": {
+                                    "description": "Certificate Thumbprint.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "version": {
+                                    "description": "Certificate Version.",
+                                    "format": "int32",
+                                    "readOnly": true,
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "isPrivateKeyExternal": {
+                            "description": "<code>true</code> if private key is external; otherwise, <code>false</code>.",
+                            "readOnly": true,
+                            "type": "boolean"
+                        },
+                        "keySize": {
+                            "default": 2048,
+                            "description": "Certificate key size.",
+                            "format": "int32",
+                            "type": "integer",
+                            "x-ms-mutability": [
+                                "create",
+                                "read"
+                            ]
+                        },
+                        "lastCertificateIssuanceTime": {
+                            "description": "Certificate last issuance time.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "nextAutoRenewalTimeStamp": {
+                            "description": "Time stamp when the certificate would be auto renewed next",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "productType": {
+                            "description": "Certificate product type.",
+                            "enum": [
+                                "StandardDomainValidatedSsl",
+                                "StandardDomainValidatedWildCardSsl"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "CertificateProductType"
+                            },
+                            "x-ms-mutability": [
+                                "create",
+                                "read"
+                            ]
+                        },
+                        "provisioningState": {
+                            "description": "Status of certificate order.",
+                            "enum": [
+                                "Succeeded",
+                                "Failed",
+                                "Canceled",
+                                "InProgress",
+                                "Deleting"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "ProvisioningState"
+                            }
+                        },
+                        "root": {
+                            "description": "Root certificate.",
+                            "readOnly": true,
+                            "properties": {
+                                "issuer": {
+                                    "description": "Certificate Issuer.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "notAfter": {
+                                    "description": "Date Certificate is valid to.",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "notBefore": {
+                                    "description": "Date Certificate is valid from.",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "rawData": {
+                                    "description": "Raw certificate data.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "serialNumber": {
+                                    "description": "Certificate Serial Number.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "signatureAlgorithm": {
+                                    "description": "Certificate Signature algorithm.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "subject": {
+                                    "description": "Certificate Subject.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "thumbprint": {
+                                    "description": "Certificate Thumbprint.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "version": {
+                                    "description": "Certificate Version.",
+                                    "format": "int32",
+                                    "readOnly": true,
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "serialNumber": {
+                            "description": "Current serial number of the certificate.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "signedCertificate": {
+                            "description": "Signed certificate.",
+                            "readOnly": true,
+                            "properties": {
+                                "issuer": {
+                                    "description": "Certificate Issuer.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "notAfter": {
+                                    "description": "Date Certificate is valid to.",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "notBefore": {
+                                    "description": "Date Certificate is valid from.",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "rawData": {
+                                    "description": "Raw certificate data.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "serialNumber": {
+                                    "description": "Certificate Serial Number.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "signatureAlgorithm": {
+                                    "description": "Certificate Signature algorithm.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "subject": {
+                                    "description": "Certificate Subject.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "thumbprint": {
+                                    "description": "Certificate Thumbprint.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "version": {
+                                    "description": "Certificate Version.",
+                                    "format": "int32",
+                                    "readOnly": true,
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "status": {
+                            "description": "Current order status.",
+                            "enum": [
+                                "Pendingissuance",
+                                "Issued",
+                                "Revoked",
+                                "Canceled",
+                                "Denied",
+                                "Pendingrevocation",
+                                "PendingRekey",
+                                "Unused",
+                                "Expired",
+                                "NotSubmitted"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "CertificateOrderStatus"
+                            }
+                        },
+                        "validityInYears": {
+                            "default": 1,
+                            "description": "Duration in years (must be between 1 and 3).",
+                            "format": "int32",
+                            "maximum": 3,
+                            "minimum": 1,
+                            "type": "integer",
+                            "x-ms-mutability": [
+                                "create",
+                                "read"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "productType"
+                    ],
+                    "x-ms-client-flatten": true
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

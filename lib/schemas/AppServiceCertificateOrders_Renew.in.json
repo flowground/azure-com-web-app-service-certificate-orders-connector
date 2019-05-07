@@ -1,0 +1,77 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+[^\\.]$"
+        },
+        "certificateOrderName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Azure proxy only resource. This resource is not tracked by Azure Resource Manager.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource Id.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "kind": {
+                            "description": "Kind of resource.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource Name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Class representing certificate renew request.",
+            "properties": {
+                "properties": {
+                    "description": "RenewCertificateOrderRequest resource specific properties",
+                    "properties": {
+                        "csr": {
+                            "description": "Csr to be used for re-key operation.",
+                            "type": "string"
+                        },
+                        "isPrivateKeyExternal": {
+                            "description": "Should we change the ASC type (from managed private key to external private key and vice versa).",
+                            "type": "boolean"
+                        },
+                        "keySize": {
+                            "description": "Certificate Key Size.",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "x-ms-client-flatten": true
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
